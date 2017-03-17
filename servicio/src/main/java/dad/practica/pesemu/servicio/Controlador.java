@@ -13,18 +13,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import dad.practica.pesemu.model.Factura;
+
 @RestController
 public class Controlador {
 
 	@PostMapping(value = "/")
 	@ResponseStatus(HttpStatus.CREATED)
-	public String generaFicheroFactura(@RequestBody String factura) {
+	public String generaFicheroFactura(@RequestBody Factura factura) {
 		// escritura de datos
 		String nombreFactura = new String();
 		try {
 			String pathFacturas = System.getProperty("user.home") + "/facturas";
 			new File(pathFacturas).mkdirs();
 			nombreFactura = "factura" + LocalDate.now().toString() + "-" + LocalTime.now().toString() + ".txt";
+			//nombreFactura = "facturaPrueba.txt";
 			PrintWriter pw = new PrintWriter(new FileWriter(pathFacturas + "/" + nombreFactura));
 			pw.print(factura);
 			pw.flush();
