@@ -6,7 +6,7 @@ public class Factura {
 	private String nombreUsuario;
 	private String correo;
 	private String fecha;
-	private String informacion;
+	private String productos;
 
 	public Factura() {
 		
@@ -23,7 +23,7 @@ public class Factura {
 			sb.append("\t" + producto.getNombre() + ":\t" + producto.getPrecio() + "\n");
 		}
 		sb.append("Precio total: " + compra.getCosteTotal() + "\n");
-		informacion = sb.toString();
+		productos = sb.toString();
 	}
 
 	public String getTitulo() {
@@ -58,17 +58,17 @@ public class Factura {
 		this.fecha = fecha;
 	}
 
-	public String getInformacion() {
-		return informacion;
+	public String getProductos() {
+		return productos;
 	}
 
-	public void setInformacion(String informacion) {
-		this.informacion = informacion;
+	public void setProductos(String productos) {
+		this.productos = productos;
 	}
 
 	@Override
 	public String toString() {
-		return titulo + nombreUsuario + correo + fecha + informacion;
+		return titulo + nombreUsuario + correo + fecha + productos;
 	}
 
 }
