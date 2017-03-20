@@ -20,25 +20,19 @@ public class Controlador {
 
 	@PostMapping(value = "/")
 	@ResponseStatus(HttpStatus.CREATED)
-	public String generaFicheroFactura(@RequestBody Factura factura) {
-		// escritura de datos
+	public void generaFicheroFactura(@RequestBody Factura factura) {
 		String nombreFactura = new String();
 		try {
 			String pathFacturas = System.getProperty("user.home") + "/facturas";
 			new File(pathFacturas).mkdirs();
 			nombreFactura = "factura" + LocalDate.now().toString() + "-" + LocalTime.now().toString() + ".txt";
-			//nombreFactura = "facturaPrueba.txt";
 			PrintWriter pw = new PrintWriter(new FileWriter(pathFacturas + "/" + nombreFactura));
 			pw.print(factura);
 			pw.flush();
 			pw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
-			return null;
 		}
-
-		String url = "http://127.0.0.1:8080/facturas/";
-		return url + nombreFactura;
 	}
 
 }
