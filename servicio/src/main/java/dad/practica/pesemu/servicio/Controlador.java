@@ -20,7 +20,7 @@ public class Controlador {
 
 	@PostMapping(value = "/")
 	@ResponseStatus(HttpStatus.CREATED)
-	public void generaFicheroFactura(@RequestBody Factura factura) {
+	public boolean generaFicheroFactura(@RequestBody Factura factura) {
 		String nombreFactura = new String();
 		try {
 			String pathFacturas = System.getProperty("user.home") + "/facturas";
@@ -32,7 +32,9 @@ public class Controlador {
 			pw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+			return false;
 		}
+		return true;
 	}
 
 }
